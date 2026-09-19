@@ -1,0 +1,78 @@
+<view class="page">
+  <view class="card cal-card">
+    <view class="cal-head row">
+      <view class="nav" bindtap="prevMonth">‹</view>
+      <view class="fill center">
+        <text class="month">{{monthLabel}}</text>
+        <text class="today-link" bindtap="backToday">回今天</text>
+      </view>
+      <view class="nav" bindtap="nextMonth">›</view>
+    </view>
+
+    <view class="week-head">
+      <view class="wh" wx:for="{{weekHead}}" wx:key="*this">{{item}}</view>
+    </view>
+
+    <view class="week-row" wx:for="{{weeks}}" wx:key="*this" wx:for-item="week">
+      <view class="day-cell {{selected === cell.dateStr ? 'cell-sel' : ''}} {{cell ? '' : 'cell-empty'}}" wx:for="{{week}}" wx:key="index" wx:for-item="cell">
+        <block wx:if="{{cell}}">
+          <view class="day {{cell.isToday ? 'day-today' : ''}}"
+            data-s="{{cell.dateStr}}" bindtap="pickDay">
+            {{cell.day}}
+            <text class="day-badge {{cell.holidayBadge === '班' ? 'work' : ''}}" wx:if="{{cell.holidayBadge}}">{{cell.holidayBadge}}</text>
+          </view>
+          <view class="sel-dot" wx:if="{{selected === cell.dateStr}}"></view>
+          <view class="day-marks" wx:if="{{cell.marks.length}}">
+            <text class="dm {{item.type}}" wx:for="{{cell.marks}}" wx:key="text" wx:for-item="item">{{item.text}}</text>
+          </view>
+          <view class="cell-events">
+            <view class="cev {{ev.done ? 'cev-done' : ''}}"
+              wx:for="{{cell.events}}" wx:key="index" wx:for-item="ev"
+              style="color:{{ev.color}};"><text class="cev-dot" style="background:{{ev.color}};"></text>{{ev.text}}</view>
+            <view class="more" wx:if="{{cell.extra > 0}}">+{{cell.extra}}</view>
+          </view>
+        </block>
+        <view wx:else class="day-blank"></view>
+      </view>
+    </view>
+  </view>
+
+  <view class="drawer" wx:if="{{showDay}}">
+    <view class="mask" catchtap="closeDay"></view>
+    <view class="sheet">
+      <view class="sheet-head row">
+        <view class="sheet-close" bindtap="closeDay">✕</view>
+        <view class="fill">
+          <view class="sheet-title">{{dayLabel}}<text class="day-badge inline {{dayHolidayBadge === '班' ? 'work' : ''}}" wx:if="{{dayHolidayBadge}}">{{dayHolidayBadge}}</text></view>
+          <view class="muted small">{{tasks.length}} 条行程</view>
+          <view class="sheet-marks" wx:if="{{dayMarks.length}}">
+            <text class="dm {{item.type}}" wx:for="{{dayMarks}}" wx:key="text" wx:for-item="item">{{item.text}}</text>
+          </view>
+        </view>
+        <view class="sheet-add" bindtap="addOnSelected">＋ 添加</view>
+      </view>
+      <view class="mini-track">
+        <view class="mini-block" wx:for="{{miniBlocks}}" wx:key="index"
+          style="left:{{item.left}}%;width:{{item.width}}%;background:{{item.color}};"></view>
+      </view>
+      <scroll-view class="sheet-body" scroll-y>
+        <view class="d-item row" wx:for="{{tasks}}" wx:key="id" data-id="{{item.id}}" bindtap="onTaskTap">
+          <view class="d-bar" style="background:{{item.color}};"></view>
+          <view class="fill">
+            <view class="d-title {{item.done ? 'd-done' : ''}}">
+              <text wx:if="{{item.conflict}}" class="warn">⚠ </text>{{item.title}}
+            </view>
+            <view class="d-sub muted small">{{item.timeText}} · {{item.categoryName}}<text wx:if="{{item.repeatIcon}}"> ↻</text></view>
+          </view>
+          <view class="check {{item.done ? 'check-on' : ''}}" data-id="{{item.id}}" catchtap="toggleTask">
+            <text wx:if="{{item.done}}">✓</text>
+          </view>
+        </view>
+        <view class="sheet-empty" wx:if="{{tasks.length === 0}}">
+          <view>这一天还没有行程</view>
+          <view class="sheet-empty-add" bindtap="addOnSelected">添加一条</view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+</view>

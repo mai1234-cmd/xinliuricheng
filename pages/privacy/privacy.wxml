@@ -1,0 +1,55 @@
+<view class="page">
+  <view class="card block">
+    <view class="title">心流日程用户隐私保护指引</view>
+    <view class="update">更新日期：2026年9月17日</view>
+    <view class="note">本小程序为纯本地个人效率工具，不提供账号登录、云端同步、支付、社交或内容发布功能。以下说明我们如何收集、使用、存储和保护你的信息。</view>
+  </view>
+
+  <view class="card block">
+    <view class="h">一、我们收集和使用的信息</view>
+    <view class="p"><text class="b">1. 头像照片：</text>当你主动点击头像并选择“从相册选择”时，我们读取你选中的那张照片，用于生成头像并保存在本机。我们不会读取相册中的其他照片，不会上传服务器。</view>
+    <view class="p"><text class="b">2. 昵称：</text>由你自行填写，用于页面问候展示，仅保存在本机。</view>
+    <view class="p"><text class="b">3. 日程、待办、习惯、今日趣事、训练记录：</text>由你主动填写或产生，用于在小程序内展示、统计和历史查询，仅保存在本机。</view>
+    <view class="p"><text class="b">4. 剪切板：</text>仅在你主动点击“提交反馈”“复制邮箱”或“导出备份”时，将对应文本写入剪贴板，便于你粘贴发送或保存；我们不读取你的剪切板内容。</view>
+    <view class="p"><text class="b">5. 用户反馈：</text>你提交的反馈文字会保存到本机，并复制为邮件内容；只有你主动发送邮件后，我们才会收到你的反馈。</view>
+  </view>
+
+  <view class="card block">
+    <view class="h">二、系统权限说明</view>
+    <view class="p">· 相册权限：仅在你主动设置头像时调用相册选择，用于选择头像照片；你可随时在微信设置中撤回该授权。</view>
+    <view class="p">· 本小程序不申请定位、麦克风、相机、通讯录、蓝牙等权限。</view>
+  </view>
+
+  <view class="card block">
+    <view class="h">三、存储方式与期限</view>
+    <view class="p">本小程序没有服务器，不进行云端存储和信息上传。上述信息仅保存在你的手机本地，不设固定保存期限，保存至你主动删除、使用「我的 → 清空全部数据」清理，或卸载微信、清除小程序数据时自动删除。</view>
+  </view>
+
+  <view class="card block">
+    <view class="h">四、信息共享与第三方</view>
+    <view class="p">我们不会向任何第三方出售、出租或共享你的信息；本小程序未接入第三方广告、统计或数据 SDK。</view>
+  </view>
+
+  <view class="card block">
+    <view class="h">五、你的权利</view>
+    <view class="p">· 查询：通过「我的 → 历史查询」查看你的记录。</view>
+    <view class="p">· 更正：在对应页面编辑日程、待办、习惯和昵称。</view>
+    <view class="p">· 导出：通过「我的 → 导出备份」复制数据。</view>
+    <view class="p">· 删除：通过「我的 → 清空全部数据」一键删除全部本地信息。</view>
+    <view class="p">· 撤回授权：在微信「设置 → 隐私 → 授权管理」中关闭相册授权。</view>
+  </view>
+
+  <view class="card block">
+    <view class="h">六、未成年人保护</view>
+    <view class="p">若你为未成年人，请在监护人指导下使用本小程序，并在监护人同意后填写相关信息。</view>
+  </view>
+
+  <view class="card block">
+    <view class="h">七、联系我们</view>
+    <view class="p">如对本指引有疑问，或需要查询、更正、删除信息，请发送邮件至：</view>
+    <view class="email row">
+      <text class="fill">{{email}}</text>
+      <text class="copy" bindtap="copyEmail">复制邮箱</text>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,75 @@
+<view class="page">
+  <view class="card profile">
+    <image class="brand-logo" src="/assets/logo-mark-gradient.png" mode="aspectFit"></image>
+    <view class="avatar-wrap" bindtap="chooseAvatar">
+      <image wx:if="{{avatar}}" class="avatar-img" src="{{avatar}}" mode="aspectFill"></image>
+      <view wx:else class="avatar avatar-man">
+        <view class="man-head"></view>
+        <view class="man-body"></view>
+      </view>
+    </view>
+    <view class="fill">
+      <view class="muted small">昵称</view>
+      <input class="nick" placeholder="点击设置昵称" placeholder-class="ph" value="{{nickname}}" bindinput="onNick" maxlength="20" />
+    </view>
+  </view>
+
+  <view class="mini-stats row">
+    <view class="ms-cell card">
+      <view class="ms-num">{{streak}}</view>
+      <view class="ms-label">当前连击</view>
+    </view>
+    <view class="ms-cell card">
+      <view class="ms-num">{{brain}}</view>
+      <view class="ms-label">脑力值</view>
+    </view>
+  </view>
+
+  <view class="section-title row">
+    <text class="fill">我的习惯</text>
+    <view class="icon-btn warm" hover-class="btn-hover" bindtap="addHabitPrompt">＋</view>
+  </view>
+  <view class="card pad">
+    <view class="habit-item" wx:for="{{habits}}" wx:key="id">
+      <text class="h-icon">{{item.icon}}</text>
+      <view class="fill habit-name">{{item.name}}</view>
+      <view class="del" data-id="{{item.id}}" bindtap="removeHabit">删除</view>
+    </view>
+  </view>
+
+  <view class="section-title">数据与隐私</view>
+  <view class="card menu">
+    <view class="menu-item row" bindtap="goTrain">
+      <view class="fill">脑力训练</view>
+      <text class="arrow">›</text>
+    </view>
+    <view class="menu-item row" bindtap="goStats">
+      <view class="fill">数据统计</view>
+      <text class="arrow">›</text>
+    </view>
+    <view class="menu-item row" bindtap="goHistory">
+      <view class="fill">历史查询</view>
+      <text class="arrow">›</text>
+    </view>
+    <view class="menu-item row" bindtap="goPrivacy">
+      <view class="fill">隐私与协议</view>
+      <text class="arrow">›</text>
+    </view>
+    <view class="menu-item row" bindtap="goFeedback">
+      <view class="fill">用户反馈</view>
+      <text class="arrow">›</text>
+    </view>
+    <view class="menu-item row" bindtap="exportData">
+      <view class="fill">导出备份</view>
+      <text class="arrow">›</text>
+    </view>
+    <view class="menu-item row" bindtap="clearData">
+      <view class="fill danger">清空全部数据</view>
+      <text class="arrow">›</text>
+    </view>
+  </view>
+
+  <view class="about muted small">
+    心流日程 MindFlow · v0.1.0 MVP
+  </view>
+</view>

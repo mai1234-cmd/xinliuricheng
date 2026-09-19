@@ -1,0 +1,249 @@
+.page {
+  min-height: 100vh;
+  padding: 36rpx 40rpx 80rpx;
+}
+
+.hero-card {
+  text-align: center;
+  padding: 36rpx 10rpx 24rpx;
+}
+
+.apm-badge {
+  width: 128rpx;
+  height: 128rpx;
+  border-radius: 40rpx;
+  background: linear-gradient(135deg, #FFF0E0, #FFE3F1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 64rpx;
+  margin: 0 auto 22rpx;
+}
+
+.apm-name {
+  font-size: 44rpx;
+  font-weight: 600;
+  margin-bottom: 12rpx;
+}
+
+.desc {
+  font-size: 26rpx;
+  color: #6B6B70;
+  line-height: 1.7;
+  padding: 0 12rpx;
+}
+
+.best-card {
+  margin-top: 22rpx;
+  padding: 24rpx 32rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.best-num {
+  color: #4F6EF7;
+  font-size: 32rpx;
+  font-weight: 600;
+}
+
+.rule {
+  margin-top: 18rpx;
+  padding: 22rpx 32rpx;
+}
+
+.rule-title {
+  font-size: 28rpx;
+  font-weight: 600;
+  margin-bottom: 8rpx;
+}
+
+.rule-item {
+  font-size: 26rpx;
+  color: #6B6B70;
+  line-height: 1.9;
+}
+
+.big {
+  margin-top: 34rpx;
+  height: 100rpx;
+  font-size: 34rpx;
+}
+
+.label {
+  font-size: 26rpx;
+  color: #6B6B70;
+  font-weight: 600;
+  margin: 22rpx 4rpx 12rpx;
+}
+
+.mode-row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.size-chip {
+  background: #FFFFFF;
+  color: #3A3A44;
+  border: 1rpx solid rgba(0, 0, 0, 0.06);
+  border-radius: 16rpx;
+  padding: 12rpx 28rpx;
+  font-size: 28rpx;
+  font-weight: 600;
+  margin-right: 16rpx;
+  margin-bottom: 8rpx;
+}
+
+.size-on {
+  background: #3A7D5C;
+  color: #FFFFFF;
+}
+
+.count-layer {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(31, 36, 48, 0.72);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+}
+
+.count-num {
+  font-size: 180rpx;
+  font-weight: 600;
+  color: #FFFFFF;
+  animation: countPop 0.6s ease;
+}
+
+@keyframes countPop {
+  0% { transform: scale(0.4); opacity: 0; }
+  60% { transform: scale(1.2); opacity: 1; }
+  100% { transform: scale(1); }
+}
+
+.play {
+  display: flex;
+  flex-direction: column;
+  min-height: 88vh;
+}
+
+.head {
+  padding: 4rpx 6rpx 14rpx;
+}
+
+.num {
+  font-size: 38rpx;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.num.warm {
+  color: #E8590C;
+  text-align: right;
+}
+
+.center {
+  text-align: center;
+}
+
+.right {
+  text-align: right;
+}
+
+.target {
+  font-size: 52rpx;
+  font-weight: 600;
+  color: #4F6EF7;
+  line-height: 1.15;
+}
+
+.field {
+  position: relative;
+  flex: 1;
+  border-radius: 40rpx;
+  background: #F2F1F6;
+  border: 1rpx solid rgba(255, 255, 255, 0.9);
+  box-shadow: inset 0 2rpx 10rpx rgba(60, 70, 110, 0.05);
+  overflow: hidden;
+}
+
+.bubble {
+  position: absolute;
+  width: 118rpx;
+  height: 118rpx;
+  margin-left: -59rpx;
+  margin-top: -59rpx;
+  border-radius: 50%;
+  background: #F6E2A0;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 40rpx;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-shadow: 0 1rpx 2rpx rgba(60, 60, 80, 0.12);
+  box-shadow: 0 6rpx 16rpx rgba(70, 80, 120, 0.12);
+  will-change: transform, opacity;
+}
+
+.bubble.wrong {
+  box-shadow: inset 0 0 0 6rpx #E8453C, 0 6rpx 16rpx rgba(70, 80, 120, 0.12);
+}
+
+.bubble.gone {
+  animation: bubbleOut 0.2s ease forwards;
+  pointer-events: none;
+}
+
+.bubble.fresh {
+  animation: bubbleIn 0.26s ease-out;
+}
+
+@keyframes bubbleOut {
+  from { transform: scale(1); opacity: 1; }
+  to { transform: scale(0); opacity: 0; }
+}
+
+@keyframes bubbleIn {
+  from { transform: translateY(12rpx) scale(0.86); opacity: 0; }
+  to { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+.done {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 76vh;
+}
+
+.done-card {
+  width: 100%;
+  padding: 60rpx 40rpx;
+  text-align: center;
+}
+
+.done-emoji {
+  font-size: 96rpx;
+}
+
+.done-title {
+  font-size: 44rpx;
+  font-weight: 600;
+  color: #37C871;
+  margin-top: 10rpx;
+}
+
+.done-time {
+  font-size: 88rpx;
+  font-weight: 600;
+  margin: 16rpx 0 6rpx;
+  font-variant-numeric: tabular-nums;
+}
+
+.done-btns {
+  margin-top: 44rpx;
+}

@@ -1,0 +1,161 @@
+.page {
+  padding: 26rpx 28rpx 80rpx;
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  padding: 24rpx 20rpx;
+}
+
+.nav {
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: 50%;
+  background: #FFFFFF;
+  color: #3A7D5C;
+  font-size: 44rpx;
+  line-height: 72rpx;
+  text-align: center;
+}
+
+.nav.off {
+  color: #C7CEDB;
+}
+
+.center { text-align: center; }
+.fill { flex: 1; min-width: 0; }
+
+.label {
+  font-size: 34rpx;
+  font-weight: 600;
+}
+
+.pick {
+  display: inline-block;
+  color: #3A7D5C;
+  font-size: 24rpx;
+  margin-top: 6rpx;
+}
+
+.summary {
+  margin-top: 18rpx;
+  padding: 24rpx 8rpx;
+}
+
+.cell { flex: 1; text-align: center; }
+
+.num {
+  font-size: 40rpx;
+  font-weight: 600;
+  color: #2BB673;
+}
+
+.num.miss { color: #E8453C; }
+
+.lbl {
+  font-size: 22rpx;
+  color: #6B6B70;
+  margin-top: 4rpx;
+}
+
+.divider {
+  width: 1rpx;
+  height: 56rpx;
+  background: #EEF1F6;
+}
+
+.story { padding: 26rpx 28rpx; }
+
+.story-text {
+  font-size: 30rpx;
+  line-height: 1.7;
+  color: #2F3650;
+}
+
+.empty {
+  color: #9AA0A6;
+  font-size: 27rpx;
+}
+
+.row-item {
+  display: flex;
+  align-items: center;
+  padding: 22rpx 24rpx;
+  margin-bottom: 14rpx;
+}
+
+.bar {
+  width: 6rpx;
+  height: 58rpx;
+  border-radius: 999rpx;
+  margin-right: 18rpx;
+  flex: none;
+}
+
+.icon {
+  width: 56rpx;
+  height: 56rpx;
+  border-radius: 18rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32rpx;
+  margin-right: 16rpx;
+  flex: none;
+}
+
+.title {
+  font-size: 30rpx;
+  font-weight: 600;
+}
+
+.done-text {
+  color: #9AA0A6;
+  text-decoration: line-through;
+}
+
+.sub {
+  font-size: 23rpx;
+  color: #6B6B70;
+  margin-top: 4rpx;
+}
+
+.tag {
+  font-size: 22rpx;
+  font-weight: 600;
+  border-radius: 12rpx;
+  padding: 6rpx 14rpx;
+  margin-left: 14rpx;
+  flex: none;
+}
+
+.tag.done { color: #2BB673; background: #DFF3E6; }
+.tag.miss { color: #E8453C; background: #FDE8E8; }
+.tag.todo { color: #6B6B70; background: #F0F1F2; }
+
+.tick {
+  width: 44rpx;
+  height: 44rpx;
+  border-radius: 12rpx;
+  border: 3rpx solid #C7CEDB;
+  margin-right: 18rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  font-weight: 700;
+  flex: none;
+}
+
+.tick.on {
+  background: #2BB673;
+  border-color: #2BB673;
+}
+
+.empty-card {
+  padding: 36rpx;
+  text-align: center;
+  color: #9AA0A6;
+  font-size: 27rpx;
+}

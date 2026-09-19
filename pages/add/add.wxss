@@ -1,0 +1,175 @@
+.page {
+  padding: 24rpx 28rpx 120rpx;
+}
+
+.seg {
+  display: flex;
+  background: #E9EDF5;
+  border-radius: 999rpx;
+  padding: 8rpx;
+}
+
+.seg-item {
+  flex: 1;
+  text-align: center;
+  height: 72rpx;
+  line-height: 72rpx;
+  border-radius: 999rpx;
+  color: #6B7280;
+  font-size: 28rpx;
+  font-weight: 600;
+}
+
+.seg-on {
+  background: #FFFFFF;
+  color: #4F6EF7;
+  box-shadow: 0 4rpx 12rpx rgba(31, 36, 48, 0.08);
+}
+
+.block {
+  margin-top: 24rpx;
+  padding: 28rpx;
+}
+
+.smart-input {
+  width: 100%;
+  min-height: 90rpx;
+  font-size: 30rpx;
+  line-height: 1.5;
+}
+
+.ph {
+  color: #B6BECB;
+}
+
+.mic {
+  width: 88rpx;
+  height: 88rpx;
+  border-radius: 50%;
+  background: #EEF1FE;
+  color: #4F6EF7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 44rpx;
+  flex: none;
+  margin-left: 20rpx;
+}
+
+.mic-on {
+  background: #FF8A3D;
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+}
+
+.tip {
+  margin: 16rpx 0 22rpx;
+}
+
+.form {
+  padding: 8rpx 28rpx;
+}
+
+.field {
+  padding: 24rpx 0;
+  border-bottom: 1rpx solid #F0F2F7;
+}
+
+.field:last-child {
+  border-bottom: none;
+}
+
+.field-label {
+  font-size: 26rpx;
+  color: #6B7280;
+  margin-bottom: 14rpx;
+  font-weight: 600;
+}
+
+.field-input {
+  font-size: 30rpx;
+}
+
+.hint {
+  color: #6B6B70;
+  font-size: 24rpx;
+  font-weight: 500;
+  margin-top: 10rpx;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 16rpx;
+}
+
+.chip {
+  padding: 10rpx 26rpx;
+  border-radius: 999rpx;
+  background: #F2F4FA;
+  color: #6B7280;
+  font-size: 26rpx;
+  margin: 0 14rpx 14rpx 0;
+  font-weight: 600;
+}
+
+.chip-on {
+  background: #EEF1FE;
+  color: #4F6EF7;
+}
+
+.chip.cat {
+  border: 3rpx solid transparent;
+}
+
+.picker-value {
+  display: inline-block;
+  background: #F2F4FA;
+  border-radius: 999rpx;
+  padding: 12rpx 28rpx;
+  font-size: 28rpx;
+  color: #1F2430;
+  font-weight: 600;
+}
+
+.sub-label {
+  font-size: 24rpx;
+  color: #77839A;
+  font-weight: 700;
+  margin-top: 8rpx;
+}
+
+.no-time {
+  margin-top: 18rpx;
+  padding-top: 16rpx;
+  border-top: 1rpx solid #EEF1F6;
+}
+
+.no-time .small {
+  color: #5C6678;
+  font-weight: 700;
+}
+
+.time-row {
+  margin-top: 16rpx;
+}
+
+.dash {
+  margin: 0 16rpx;
+  color: #9AA3B2;
+  font-weight: 800;
+}
+
+.save-btn {
+  margin-top: 40rpx;
+}
+
+.del-btn {
+  margin-top: 20rpx;
+  background: #FFEDE9;
+  color: #E8590C;
+}

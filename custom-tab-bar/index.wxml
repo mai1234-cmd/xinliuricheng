@@ -1,0 +1,14 @@
+<view class="tab-shell">
+  <view class="tab-item {{selected === index ? 'tab-on' : ''}}"
+    wx:for="{{list}}" wx:key="pagePath" data-index="{{index}}" bindtap="switchTab">
+    <view class="tab-icon">
+      <block wx:if="{{index === 4}}">
+        <view class="man-head"></view>
+        <view class="man-body"></view>
+      </block>
+      <text wx:else>{{item.icon}}</text>
+    </view>
+    <view class="tab-label">{{item.text}}</view>
+    <view class="tab-dot" wx:if="{{selected === index}}"></view>
+  </view>
+</view>

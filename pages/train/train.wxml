@@ -1,0 +1,26 @@
+<view class="page">
+  <view class="hero card row">
+    <view class="brain-badge">🧠</view>
+    <view class="fill">
+      <view class="muted small">脑力值</view>
+      <view class="brain-num">{{brain}}</view>
+    </view>
+    <view class="fill right">
+      <view class="muted small">累计训练</view>
+      <view class="count">{{count}} 次</view>
+    </view>
+  </view>
+
+  <view class="section-title">训练项目</view>
+  <view class="game-card card row" wx:for="{{games}}" wx:key="id" data-id="{{item.id}}" bindtap="start">
+    <view class="game-icon" style="background:{{item.tint}};">{{item.icon}}</view>
+    <view class="fill">
+      <view class="game-name">{{item.name}}</view>
+      <view class="muted small">{{item.desc}}</view>
+      <view class="game-best small">{{item.best}}</view>
+    </view>
+    <view class="game-go">开始 ›</view>
+  </view>
+
+  <view class="more muted small">更多认知训练正在开发中</view>
+</view>

@@ -1,0 +1,75 @@
+<view class="page">
+  <view class="stat-hero card row">
+    <view class="stat-cell">
+      <view class="stat-num">{{current}}</view>
+      <view class="stat-label">当前连击</view>
+    </view>
+    <view class="stat-divider"></view>
+    <view class="stat-cell">
+      <view class="stat-num">{{longest}}</view>
+      <view class="stat-label">最长连击</view>
+    </view>
+    <view class="stat-divider"></view>
+    <view class="stat-cell">
+      <view class="stat-num accent">{{todayDone}}/{{todayTotal}}</view>
+      <view class="stat-label">今日完成</view>
+    </view>
+  </view>
+
+  <view class="section-title">本周打卡</view>
+  <view class="card pad">
+    <view class="week-bars">
+      <view class="bar-col" wx:for="{{weekBars}}" wx:key="index">
+        <view class="bar-track">
+          <view class="bar-fill" style="height:{{item.pct}}%;"></view>
+        </view>
+        <view class="bar-label {{item.isToday ? 'bar-today' : ''}}">{{item.label}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="section-title">本月热力图</view>
+  <view class="card pad">
+    <view class="heat-row" wx:for="{{heatWeeks}}" wx:key="index" wx:for-item="week">
+      <view class="heat-cell {{cell ? 'l' + cell.level : 'blank'}}" wx:for="{{week}}" wx:key="index" wx:for-item="cell">
+        <block wx:if="{{cell}}">{{cell.day}}</block>
+      </view>
+    </view>
+    <view class="heat-legend muted small">
+      <text>少</text>
+      <view class="legend-cell l0"></view>
+      <view class="legend-cell l1"></view>
+      <view class="legend-cell l2"></view>
+      <view class="legend-cell l3"></view>
+      <text>多</text>
+    </view>
+  </view>
+
+  <view class="section-title">习惯本月完成</view>
+  <view class="card pad" wx:if="{{habitRows.length > 0}}">
+    <view class="h-row" wx:for="{{habitRows}}" wx:key="id">
+      <text class="h-icon">{{item.icon}}</text>
+      <view class="fill">{{item.name}}</view>
+      <text class="h-count">{{item.count}} 天</text>
+    </view>
+  </view>
+
+  <view class="section-title">训练成绩</view>
+  <view class="card pad">
+    <view class="h-row">
+      <text class="h-icon">🧠</text>
+      <view class="fill">累计训练</view>
+      <text class="h-count">{{recCount}} 次</text>
+    </view>
+    <view class="h-row" wx:for="{{games}}" wx:key="name">
+      <text class="h-icon">🎯</text>
+      <view class="fill">{{item.name}}</view>
+      <text class="h-count">{{item.text}}</text>
+    </view>
+    <view class="h-row">
+      <text class="h-icon">🎯</text>
+      <view class="fill">数字降序速点</view>
+      <text class="h-count">{{scatterText}}</text>
+    </view>
+  </view>
+</view>

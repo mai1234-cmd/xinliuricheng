@@ -1,0 +1,18 @@
+{
+  "compileType": "miniprogram",
+  "appid": "wxa220bf792ba1fbce",
+  "projectname": "mindflow",
+  "setting": {
+    "es6": true,
+    "postcss": true,
+    "minified": true,
+    "urlCheck": false,
+    "enhance": true,
+    "ignoreUploadUnusedFiles": true,
+    "uglifyFileName": true,
+    "uploadWithSourceMap": false,
+    "minifyWXSS": true,
+    "minifyWXML": true
+  },
+  "condition": {}
+}

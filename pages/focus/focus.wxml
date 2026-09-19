@@ -1,0 +1,59 @@
+<view class="page">
+  <view class="top row">
+    <view class="fill">
+      <view class="title">专注时刻</view>
+      <view class="muted small">{{dateLabel}}</view>
+    </view>
+    <view class="sun">🧘</view>
+  </view>
+
+  <view class="seg">
+    <view class="seg-item {{mode === item.id ? 'seg-on' : ''}}"
+      wx:for="{{modes}}" wx:key="id" data-id="{{item.id}}" bindtap="switchMode">{{item.name}}</view>
+  </view>
+
+  <view class="char-row" wx:if="{{mode === 'pomodoro'}}">
+    <view class="char-chip {{char === item.id ? 'char-on' : ''}}"
+      wx:for="{{chars}}" wx:key="id" data-id="{{item.id}}" bindtap="pickChar">
+      <text class="char-emoji">{{item.emoji}}</text>
+      <text>{{item.name}}</text>
+    </view>
+  </view>
+
+  <view class="ring-wrap">
+    <view class="ring" style="background: conic-gradient({{themeMain}} 0deg, {{themeMain}} {{deg}}deg, rgba(255,255,255,0.55) {{deg}}deg, rgba(255,255,255,0.55) 360deg);">
+      <view class="core">
+        <view class="mascot">{{charEmoji}}</view>
+        <view class="time {{state === 'done' ? 'time-done' : ''}}">{{display}}</view>
+        <view class="status" style="color:{{themeMain}};">{{statusText}} · {{charName}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="minutes-row">
+    <view class="chip {{minutes === item ? 'chip-on' : ''}}"
+      wx:for="{{presets}}" wx:key="*this" data-n="{{item}}" bindtap="pickPreset">{{item}}分</view>
+    <view class="step" data-d="-5" bindtap="step">−</view>
+    <view class="step" data-d="5" bindtap="step">＋</view>
+  </view>
+
+  <button class="main-btn" style="background:{{themeMain}};" hover-class="btn-hover" bindtap="mainAction">
+    {{state === 'idle' ? '开始专注' : (state === 'run' ? '暂停' : (state === 'pause' ? '继续' : '再来一轮'))}}
+  </button>
+  <view class="reset-row" wx:if="{{state !== 'idle'}}">
+    <view class="reset" bindtap="resetAll">重置</view>
+  </view>
+
+  <view class="done-card card" wx:if="{{state === 'done'}}">
+    <view class="done-big">🎉</view>
+    <view class="done-line">这一轮专注完成，休息一下吧</view>
+  </view>
+
+  <view class="section-title">专注伴侣</view>
+  <view class="feat-row">
+    <view class="feat card" wx:for="{{features}}" wx:key="id" data-id="{{item.id}}" bindtap="onFeature">
+      <view class="feat-icon">{{item.icon}}</view>
+      <view class="feat-name">{{item.name}}</view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,52 @@
+<view class="page">
+  <view class="card head">
+    <view class="nav" bindtap="prevDay">‹</view>
+    <view class="fill center">
+      <view class="label">{{label}}</view>
+      <picker mode="date" value="{{dateStr}}" bindchange="onDate">
+        <view class="pick">选择日期 ›</view>
+      </picker>
+    </view>
+    <view class="nav {{dateStr === today ? 'off' : ''}}" bindtap="nextDay">›</view>
+  </view>
+
+  <view class="card summary row">
+    <view class="cell"><view class="num">{{doneCount}}</view><view class="lbl">已完成</view></view>
+    <view class="divider"></view>
+    <view class="cell"><view class="num miss">{{missedCount}}</view><view class="lbl">未做</view></view>
+    <view class="divider"></view>
+    <view class="cell"><view class="num">{{pendingCount}}</view><view class="lbl">待完成</view></view>
+  </view>
+
+  <view class="section-title">今日趣事</view>
+  <view class="card story">
+    <view wx:if="{{story}}" class="story-text">{{story}}</view>
+    <view wx:else class="empty">这一天还没有记录趣事</view>
+  </view>
+
+  <view class="section-title">今日时间轴</view>
+  <block wx:if="{{tasks.length > 0}}">
+    <view class="card row-item" wx:for="{{tasks}}" wx:key="id">
+      <view class="bar" style="background:{{item.color}};"></view>
+      <view class="icon" style="background:{{item.light}};">{{item.icon}}</view>
+      <view class="fill">
+        <view class="title {{item.done ? 'done-text' : ''}}">{{item.title}}</view>
+        <view class="sub">{{item.timeText}}<text wx:if="{{item.note}}"> · {{item.note}}</text></view>
+      </view>
+      <view class="tag {{item.statusClass}}">{{item.status}}</view>
+    </view>
+  </block>
+  <view class="card empty-card" wx:else>这一天没有时间轴行程</view>
+
+  <view class="section-title">待办</view>
+  <block wx:if="{{todos.length > 0}}">
+    <view class="card row-item" wx:for="{{todos}}" wx:key="id">
+      <view class="tick {{item.done ? 'on' : ''}}"><text wx:if="{{item.done}}">✓</text></view>
+      <view class="fill">
+        <view class="title {{item.done ? 'done-text' : ''}}">{{item.title}}</view>
+      </view>
+      <view class="tag {{item.statusClass}}">{{item.status}}</view>
+    </view>
+  </block>
+  <view class="card empty-card" wx:else>这一天没有待办</view>
+</view>

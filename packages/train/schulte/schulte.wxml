@@ -1,0 +1,90 @@
+<view class="page">
+  <view class="setup" wx:if="{{phase === 'setup'}}">
+    <view class="headline">
+      <view class="mode-name">舒尔特表</view>
+      <view class="muted small">选择规则与难度，开始后计时</view>
+    </view>
+
+    <view class="label">玩法</view>
+    <view class="mode-row">
+      <view class="mode-chip {{variant === item.id ? 'mode-on' : ''}}"
+        wx:for="{{variants}}" wx:key="id" data-id="{{item.id}}" bindtap="pickVariant">{{item.name}}</view>
+    </view>
+
+    <view class="label" wx:if="{{variant === 'irregular'}}">数字数量</view>
+    <view class="mode-row" wx:if="{{variant === 'irregular'}}">
+      <view class="size-chip {{n === item ? 'size-on' : ''}}"
+        wx:for="{{ns}}" wx:key="*this" data-n="{{item}}" bindtap="pickN">{{item}} 个</view>
+    </view>
+
+    <view class="label" wx:if="{{variant !== 'irregular'}}">难度</view>
+    <view class="mode-row" wx:if="{{variant !== 'irregular'}}">
+      <view class="size-chip {{size === item ? 'size-on' : ''}}"
+        wx:for="{{sizes}}" wx:key="*this" data-n="{{item}}" bindtap="pickSize">{{item}}×{{item}}</view>
+    </view>
+
+    <view class="card rule">
+      <view class="rule-title" wx:if="{{variant === 'regular'}}">正规舒尔特</view>
+      <view class="rule-title" wx:elif="{{variant === 'color'}}">彩色数字舒尔特</view>
+      <view class="rule-title" wx:else>不规则舒尔特（Voronoi）</view>
+      <view class="rule-desc" wx:if="{{variant === 'regular'}}">白底黑字，从 1 开始按顺序点击数字，越快越好。</view>
+      <view class="rule-desc" wx:elif="{{variant === 'color'}}">数字使用随机柔和颜色，在颜色干扰下按 1→N 顺序点击。</view>
+      <view class="rule-desc" wx:else>泰森多边形不规则分区，数字随机分布。点对当前目标数字，细胞变绿；同一目标停留超过 10 秒，数字才会变红提醒；点错会抖动闪红。每局重新生成棋盘。</view>
+      <view class="rule-best" wx:if="{{bestText}}">当前最佳：{{bestText}}</view>
+      <view class="rule-best" wx:else>还没有成绩，来刷新一下</view>
+    </view>
+
+    <button class="btn btn-primary btn-block big" hover-class="btn-hover" bindtap="start">开始训练</button>
+  </view>
+
+  <view class="count-layer" wx:if="{{phase === 'count'}}">
+    <view class="count-num">{{count}}</view>
+  </view>
+
+  <view class="play" wx:elif="{{phase === 'play'}}">
+    <view class="status row">
+      <view class="fill">
+        <view class="muted small">用时</view>
+        <view class="st-time">{{timeText}}</view>
+      </view>
+      <view class="fill center">
+        <view class="muted small">当前目标</view>
+        <view class="st-target">{{target}}</view>
+      </view>
+      <view class="fill right">
+        <view class="muted small">错点</view>
+        <view class="st-wrong">{{wrong}}</view>
+      </view>
+    </view>
+
+    <view class="grid" wx:if="{{variant !== 'irregular'}}">
+      <view class="gcell {{item.done ? 'ok' : ''}} {{item.wrong ? 'wrong' : ''}}"
+        wx:for="{{grid}}" wx:key="num" data-idx="{{index}}" data-num="{{item.num}}" bindtap="onCell"
+        style="width:{{cellSize}};height:{{cellSize}};color:{{variant === 'color' ? item.color : '#2F3A45'}};">{{item.num}}</view>
+    </view>
+
+    <canvas wx:else type="2d" id="board" class="board {{shake ? 'shake' : ''}}" bindtouchend="onCanvasTap"></canvas>
+
+    <view class="play-actions row">
+      <view class="link-btn" bindtap="again">重新开始</view>
+      <view class="fill"></view>
+      <view class="link-btn muted" bindtap="backHome">返回</view>
+    </view>
+  </view>
+
+  <view class="done" wx:elif="{{phase === 'done'}}">
+    <view class="card done-card">
+      <view class="done-emoji" wx:if="{{newBest}}">🏆</view>
+      <view class="done-emoji" wx:else>🎉</view>
+      <view class="done-title">{{newBest ? '新纪录！' : '完成！'}}</view>
+      <view class="done-time">{{timeText}}</view>
+      <view class="done-sub muted">错点 {{wrong}} 次 · +{{points}} 脑力值</view>
+      <view class="row done-btns">
+        <button class="btn btn-ghost fill" hover-class="btn-hover" bindtap="again">再来一局</button>
+        <view style="width: 20rpx;"></view>
+        <button class="btn btn-primary fill" hover-class="btn-hover" bindtap="toSetup">换玩法</button>
+      </view>
+      <view class="back-link" bindtap="backHome">返回训练列表</view>
+    </view>
+  </view>
+</view>

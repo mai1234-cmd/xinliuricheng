@@ -1,0 +1,141 @@
+<view class="page">
+  <view class="head row">
+    <view class="fill">
+      <view class="greet"><text>{{greet}}，</text><text class="greet-name">{{greetName}}</text></view>
+      <view class="date muted">{{dateLabel}}</view>
+    </view>
+    <view class="streak-chip" wx:if="{{streak > 0}}">
+      <text class="fire">🔥</text>
+      <text>连击 {{streak}} 天</text>
+    </view>
+    <view class="streak-chip off" wx:else>
+      <text>从今天开始</text>
+    </view>
+  </view>
+
+  <view class="hero">
+    <view class="hero-ring"
+      style="background: conic-gradient(rgba(255,255,255,1) 0deg, rgba(255,255,255,1) {{deg}}deg, rgba(255,255,255,0.25) {{deg}}deg, rgba(255,255,255,0.25) 360deg);">
+      <view class="hero-core">
+        <text class="hero-pct jump">{{pctText}}</text>
+        <text class="hero-label">今日进度</text>
+      </view>
+    </view>
+    <view class="hero-copy fill">
+      <view class="hero-quote">“{{motto}}”</view>
+      <view class="hero-sub">已完成 {{done}} / {{total}}</view>
+    </view>
+  </view>
+
+  <view class="strip card row">
+    <view class="cell">
+      <view class="cell-num jump">{{done}}/{{total}}</view>
+      <view class="cell-label">今日完成</view>
+    </view>
+    <view class="divider"></view>
+    <view class="cell">
+      <view class="cell-num jump">{{streak}}</view>
+      <view class="cell-label">连续天数</view>
+    </view>
+    <view class="divider"></view>
+    <view class="cell">
+      <view class="cell-num jump accent">{{brain}}</view>
+      <view class="cell-label">脑力值</view>
+    </view>
+  </view>
+
+  <view class="section-title row">
+    <text class="fill">今日时间轴</text>
+    <view class="icon-btn" hover-class="btn-hover" bindtap="goAdd">＋</view>
+  </view>
+
+  <block wx:if="{{tasks.length > 0}}">
+    <view class="card tl-card fx-wrap {{item.done ? 'tl-card-done' : ''}}" wx:for="{{tasks}}" wx:key="id" data-id="{{item.id}}" bindtap="onTaskTap">
+      <view class="tl-bar" style="background:{{item.color}};"></view>
+      <view class="tl-icon" style="background:{{item.light}};">{{item.icon}}</view>
+      <view class="fill">
+        <view class="tl-title {{item.done ? 'tl-done' : ''}}">{{item.title}}</view>
+        <view class="tl-cat muted small">{{item.categoryName}}{{item.repeatIcon ? ' ' + item.repeatIcon : ''}}{{item.important ? ' · 🔔' : ''}}</view>
+        <view class="tl-place small" wx:if="{{item.note}}">📍 {{item.note}}</view>
+      </view>
+      <view class="tl-time {{item.done ? 'tl-done' : ''}}">{{item.timeText}}</view>
+      <view class="fx-float" wx:if="{{item.fx}}">{{item.fx}}</view>
+      <view class="check {{item.done ? 'check-on' : ''}}" data-id="{{item.id}}" catchtap="toggleTask">
+        <text wx:if="{{item.done}}">✓</text>
+      </view>
+    </view>
+  </block>
+  <view class="card empty" wx:else>
+    <view class="empty-icon">🌤️</view>
+    <view class="empty-title">今天还没有日程</view>
+    <button class="btn btn-primary btn-block empty-btn" hover-class="btn-hover" bindtap="goAdd">添加第一个任务</button>
+  </view>
+
+  <view class="gap"></view>
+
+  <view class="section-title row">
+    <text class="fill">待办 · {{todos.length}}</text>
+    <view class="icon-btn" hover-class="btn-hover" bindtap="goAddTodo">＋</view>
+  </view>
+  <block wx:if="{{todos.length > 0}}">
+    <view class="card todo-card" wx:for="{{todos}}" wx:key="id" data-id="{{item.id}}" bindtap="toggleTodo">
+      <view class="tick-box {{item.done ? 'tick-box-on' : ''}}">
+        <text wx:if="{{item.done}}">✓</text>
+      </view>
+      <view class="fill">
+        <view class="todo-title {{item.done ? 'tl-done' : ''}}">{{item.title}}</view>
+        <view class="tl-cat muted small">{{item.categoryName}}</view>
+      </view>
+      <view class="todo-edit" data-id="{{item.id}}" catchtap="editTodo">✎</view>
+      <view class="todo-del" data-id="{{item.id}}" catchtap="deleteTodo">🗑</view>
+      <view class="fx-float" wx:if="{{item.fx}}">{{item.fx}}</view>
+    </view>
+  </block>
+  <view class="card empty slim" wx:else>
+    <view class="empty-title">今天还没有待办，点 ＋ 记一件小事</view>
+  </view>
+
+  <view class="gap"></view>
+
+  <view class="section-title row">
+    <text class="fill">我的习惯</text>
+    <view class="icon-btn warm" hover-class="btn-hover" bindtap="addHabitPrompt">＋</view>
+  </view>
+  <block wx:if="{{habits.length > 0}}">
+    <view class="card habit-card fx-wrap" wx:for="{{habits}}" wx:key="id">
+      <view class="habit-icon" style="background:{{item.pastel}};">{{item.icon}}</view>
+      <view class="fill">
+        <view class="habit-name {{item.status ? 'habit-done' : ''}}">{{item.name}}</view>
+        <view class="habit-state small">
+          <text wx:if="{{item.status === 'done'}}">已完成</text>
+          <text wx:else class="muted">待打卡</text>
+        </view>
+      </view>
+      <view class="edit-pen" data-id="{{item.id}}" catchtap="editHabit">✎</view>
+      <view class="fx-float" wx:if="{{item.fx}}">{{item.fx}}</view>
+      <view class="round-check {{item.status === 'done' ? 'round-check-on' : ''}}" data-id="{{item.id}}" data-mode="done" catchtap="setHabit">
+        <text wx:if="{{item.status === 'done'}}">✓</text>
+      </view>
+    </view>
+  </block>
+  <view class="card empty slim" wx:else>
+    <view class="empty-title">还没有习惯，点右上角 ＋ 新建</view>
+  </view>
+
+  <view class="gap"></view>
+
+  <view class="section-title">今日趣事</view>
+  <view class="card story-card">
+    <textarea class="story-input" placeholder="写一件今天发生的有意义的事…" placeholder-class="story-ph"
+      value="{{story}}" bindinput="onStoryInput" bindblur="onStoryBlur" maxlength="300" auto-height></textarea>
+  </view>
+
+  <view class="train-entry" bindtap="goTrain">
+    <view class="train-icon">🧠</view>
+    <view class="fill">
+      <view class="train-title">今天练点脑力</view>
+      <view class="muted small">数字 · 图案 · 颜色舒尔特，还有降序速点</view>
+    </view>
+    <view class="train-go">去训练 ›</view>
+  </view>
+</view>

@@ -1,0 +1,176 @@
+.page {
+  padding: 24rpx 28rpx 200rpx;
+}
+
+.stat-hero {
+  padding: 30rpx 10rpx;
+}
+
+.stat-cell {
+  flex: 1;
+  text-align: center;
+}
+
+.stat-num {
+  font-size: 40rpx;
+  font-weight: 800;
+}
+
+.stat-num.accent {
+  color: #4F6EF7;
+  font-size: 32rpx;
+}
+
+.stat-label {
+  font-size: 22rpx;
+  color: #9AA3B2;
+  margin-top: 6rpx;
+}
+
+.stat-divider {
+  width: 1rpx;
+  height: 60rpx;
+  background: #EEF1F6;
+}
+
+.pad {
+  padding: 28rpx;
+}
+
+.week-bars {
+  display: flex;
+  align-items: flex-end;
+  height: 220rpx;
+}
+
+.bar-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+.bar-track {
+  flex: 1;
+  width: 40rpx;
+  background: #F0F2F7;
+  border-radius: 999rpx;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+
+.bar-fill {
+  width: 100%;
+  background: linear-gradient(180deg, #6F89F8, #4F6EF7);
+  border-radius: 999rpx;
+  min-height: 8rpx;
+}
+
+.bar-label {
+  margin-top: 14rpx;
+  font-size: 24rpx;
+  color: #9AA3B2;
+}
+
+.bar-today {
+  color: #4F6EF7;
+  font-weight: 800;
+}
+
+.heat-row {
+  display: flex;
+  margin-bottom: 12rpx;
+}
+
+.heat-cell {
+  width: 13.5%;
+  height: 60rpx;
+  margin: 0 0.5%;
+  border-radius: 12rpx;
+  background: #F0F2F7;
+  text-align: center;
+  line-height: 60rpx;
+  font-size: 22rpx;
+  color: #9AA3B2;
+}
+
+.heat-cell.l1 {
+  background: #DCE6FF;
+  color: #4F6EF7;
+}
+
+.heat-cell.l2 {
+  background: #AFC2FA;
+  color: #FFFFFF;
+}
+
+.heat-cell.l3 {
+  background: #4F6EF7;
+  color: #FFFFFF;
+  font-weight: 700;
+}
+
+.heat-cell.blank {
+  background: transparent;
+}
+
+.heat-legend {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: 12rpx;
+}
+
+.heat-legend text {
+  margin: 0 8rpx;
+}
+
+.legend-cell {
+  width: 24rpx;
+  height: 24rpx;
+  border-radius: 6rpx;
+  margin: 0 4rpx;
+}
+
+.h-row {
+  display: flex;
+  align-items: center;
+  padding: 16rpx 0;
+  border-bottom: 1rpx solid #F0F2F7;
+}
+
+.h-row:last-child {
+  border-bottom: none;
+}
+
+.h-icon {
+  margin-right: 18rpx;
+  font-size: 34rpx;
+}
+
+.h-count {
+  color: #4F6EF7;
+  font-weight: 700;
+  font-size: 28rpx;
+}
+
+.score-card {
+  padding: 26rpx;
+  margin-right: 20rpx;
+}
+
+.score-card:last-child {
+  margin-right: 0;
+}
+
+.score-num {
+  font-size: 38rpx;
+  font-weight: 800;
+  margin-top: 6rpx;
+}
+
+.score-card.empty {
+  color: #9AA3B2;
+}

@@ -1,0 +1,66 @@
+<view class="page">
+  <view class="setup" wx:if="{{phase === 'setup'}}">
+    <view class="hero-card">
+      <view class="apm-badge">🎯</view>
+      <view class="apm-name">数字降序速点</view>
+      <view class="desc">6 个白色数字圆球随机分布且互不重叠。点击当前最大数字，只有它会缩小淡出，其余圆球保持不动，空位补入下一个数字，从 50 一路点到 1。</view>
+    </view>
+    <view class="card best-card">
+      <view class="best-label muted small">当前最佳</view>
+      <view class="best-num">{{bestText}}</view>
+    </view>
+    <view class="label">每次挑战数量</view>
+    <view class="mode-row">
+      <view class="size-chip {{total === item ? 'size-on' : ''}}"
+        wx:for="{{totals}}" wx:key="*this" data-n="{{item}}" bindtap="pickTotal">{{item}} 个</view>
+    </view>
+    <view class="card rule">
+      <view class="rule-title">规则</view>
+      <view class="rule-item">· 从 {{total}} 数到 1，共 {{total}} 次点击</view>
+      <view class="rule-item">· 屏幕始终保留 6 个数字圆球</view>
+      <view class="rule-item">· 点错会计入错点，不影响计时</view>
+    </view>
+    <button class="btn btn-primary btn-block big" hover-class="btn-hover" bindtap="start">开始挑战</button>
+  </view>
+
+  <view class="count-layer" wx:if="{{phase === 'count'}}">
+    <view class="count-num">{{count}}</view>
+  </view>
+
+  <view class="play" wx:elif="{{phase === 'play'}}">
+    <view class="head row">
+      <view class="fill">
+        <view class="muted small">用时</view>
+        <view class="num">{{timeText}}</view>
+      </view>
+      <view class="fill center">
+        <view class="muted small">已完成 {{doneCount}}/{{total}}</view>
+        <view class="target">点 {{target}}</view>
+      </view>
+      <view class="fill right">
+        <view class="muted small">错点</view>
+        <view class="num warm">{{wrong}}</view>
+      </view>
+    </view>
+    <view class="field">
+      <view class="bubble {{item.state}} {{item.fresh ? 'fresh' : ''}}"
+        wx:for="{{cells}}" wx:key="num" data-idx="{{index}}" data-num="{{item.num}}"
+        style="left:{{item.x}}%;top:{{item.y}}%;background:{{item.color}};" bindtap="onCell">{{item.num}}</view>
+    </view>
+  </view>
+
+  <view class="done" wx:elif="{{phase === 'done'}}">
+    <view class="card done-card">
+      <view class="done-emoji" wx:if="{{newBest}}">🏆</view>
+      <view class="done-emoji" wx:else>🎉</view>
+      <view class="done-title">{{newBest ? '新纪录！' : '50 到 1 全部点完！'}}</view>
+      <view class="done-time">{{timeText}}</view>
+      <view class="muted">错点 {{wrong}} 次 · +{{points}} 脑力值</view>
+      <view class="row done-btns">
+        <button class="btn btn-ghost fill" hover-class="btn-hover" bindtap="again">再来一次</button>
+        <view style="width: 20rpx;"></view>
+        <button class="btn btn-primary fill" hover-class="btn-hover" bindtap="backHome">返回</button>
+      </view>
+    </view>
+  </view>
+</view>

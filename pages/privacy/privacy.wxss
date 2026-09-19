@@ -1,0 +1,62 @@
+.page {
+  padding: 28rpx 28rpx 80rpx;
+}
+
+.block {
+  padding: 28rpx;
+  margin-bottom: 18rpx;
+}
+
+.title {
+  font-size: 36rpx;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.update {
+  font-size: 24rpx;
+  color: #6B6B70;
+  margin-top: 10rpx;
+}
+
+.note {
+  font-size: 27rpx;
+  color: #4E5870;
+  line-height: 1.75;
+  margin-top: 18rpx;
+}
+
+.h {
+  font-size: 31rpx;
+  font-weight: 600;
+  margin-bottom: 14rpx;
+}
+
+.p {
+  font-size: 27rpx;
+  color: #4E5870;
+  line-height: 1.8;
+  margin-bottom: 10rpx;
+}
+
+.b {
+  font-weight: 600;
+  color: #2F3650;
+}
+
+.email {
+  display: flex;
+  align-items: center;
+  margin-top: 12rpx;
+}
+
+.fill { flex: 1; }
+
+.copy {
+  color: #3A7D5C;
+  font-size: 25rpx;
+  font-weight: 600;
+  background: #DFF3E6;
+  border-radius: 14rpx;
+  padding: 8rpx 18rpx;
+}

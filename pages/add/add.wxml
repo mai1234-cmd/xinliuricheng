@@ -1,0 +1,75 @@
+<view class="page">
+  <view class="section-title">任务内容</view>
+  <view class="card form">
+    <view class="field">
+      <view class="field-label">标题</view>
+      <input class="field-input" placeholder="要做什么" placeholder-class="ph" value="{{title}}" bindinput="onTitle" maxlength="60" />
+      <view class="hint" bindtap="parseTitle">试试输入：明天下午三点开会</view>
+    </view>
+
+    <view class="field">
+      <view class="field-label">日期</view>
+      <picker mode="date" value="{{dateStr}}" bindchange="onDate">
+        <view class="picker-value">{{dateLabel}} ›</view>
+      </picker>
+
+      <view class="chips" wx:if="{{!noTime}}">
+        <view class="chip {{repeat === item.id ? 'chip-on' : ''}}"
+          wx:for="{{repeats}}" wx:key="id" data-id="{{item.id}}" bindtap="pickRepeat">{{item.name}}</view>
+      </view>
+      <view class="chips" wx:if="{{repeat === 'custom' && !noTime}}">
+        <view class="chip {{item.on ? 'chip-on' : ''}}"
+          wx:for="{{weekList}}" wx:key="idx" data-idx="{{item.idx}}" bindtap="toggleWeek">周{{item.name}}</view>
+      </view>
+
+      <view class="no-time row">
+        <view class="fill small">不设时间（作为待办）</view>
+        <switch checked="{{noTime}}" color="#4F6EF7" bindchange="onNoTime" />
+      </view>
+    </view>
+
+    <view class="field" wx:if="{{!noTime}}">
+      <view class="row">
+        <view class="field-label">时间</view>
+        <view class="fill"></view>
+        <text class="small">结束时间</text>
+        <switch checked="{{hasEnd}}" color="#4F6EF7" bindchange="toggleEnd" />
+      </view>
+      <view class="row time-row">
+        <picker mode="time" value="{{time}}" bindchange="onTime">
+          <view class="picker-value">开始 {{time}} ›</view>
+        </picker>
+        <text class="dash" wx:if="{{hasEnd}}">—</text>
+        <picker mode="time" value="{{endTime}}" bindchange="onEndTime" wx:if="{{hasEnd}}">
+          <view class="picker-value">结束 {{endTime}} ›</view>
+        </picker>
+      </view>
+    </view>
+
+    <view class="field">
+      <view class="field-label">分类</view>
+      <view class="chips">
+        <view class="chip cat {{category === item.id ? 'chip-on' : ''}}"
+          wx:for="{{cats}}" wx:key="id" data-id="{{item.id}}" bindtap="pickCat"
+          style="{{category === item.id ? 'border-color:' + item.color + ';color:' + item.color + ';' : ''}}">
+          {{item.name}}
+        </view>
+      </view>
+    </view>
+
+    <view class="field">
+      <view class="field-label">地点</view>
+      <input class="field-input" placeholder="不填则无地点，如：图书馆" placeholder-class="ph" value="{{note}}" bindinput="onNote" maxlength="100" />
+    </view>
+    <view class="field row">
+      <view class="fill">
+        <view class="field-label">重要提醒</view>
+        <view class="muted small">到点前提醒我（当前版本先标记，推送后续接入）</view>
+      </view>
+      <switch checked="{{important}}" color="#FF6B4A" bindchange="onImportant" />
+    </view>
+  </view>
+
+  <button class="btn btn-primary btn-block save-btn" hover-class="btn-hover" bindtap="save">保存</button>
+  <button wx:if="{{editId}}" class="btn btn-block del-btn" hover-class="btn-hover" bindtap="deleteTask">删除行程</button>
+</view>

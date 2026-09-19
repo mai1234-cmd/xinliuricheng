@@ -1,0 +1,61 @@
+<view class="page">
+  <view class="head row">
+    <view class="nav" data-d="-1" bindtap="shiftWeek">‹</view>
+    <view class="fill center">
+      <view class="w-title">{{weekNo}}</view>
+      <view class="muted small">{{rangeLabel}}</view>
+    </view>
+    <view class="nav" data-d="1" bindtap="shiftWeek">›</view>
+  </view>
+
+  <view class="ops row">
+    <view class="op" bindtap="backToday">回本周</view>
+    <view class="fill"></view>
+    <view class="op add" bindtap="addOnSelected">＋ 添加</view>
+  </view>
+
+  <view class="dhead">
+    <view class="spacer"></view>
+    <view class="dcol" wx:for="{{days}}" wx:key="dateStr" wx:for-index="di" data-s="{{item.dateStr}}" bindtap="pickDay">
+      <view class="dwk">{{item.weekCn}}</view>
+      <view class="dnum {{selected === item.dateStr ? 'sel' : ''}} {{item.isToday ? 'today' : ''}}">{{item.dayNum}}</view>
+    </view>
+  </view>
+
+  <scroll-view class="scroll" scroll-y enhanced show-scrollbar="{{false}}">
+    <view class="body" style="height:{{bodyHeight}}rpx;">
+      <view class="timecol">
+        <view class="timecell" wx:for="{{hours}}" wx:key="*this">{{item}}</view>
+      </view>
+      <view class="days">
+        <view class="daycol {{selected === item.dateStr ? 'daycol-sel' : ''}}" wx:for="{{days}}" wx:key="dateStr" wx:for-index="di" style="height:{{bodyHeight}}rpx;">
+          <view class="event {{selected === ev.dateStr ? 'ev-solid' : 'ev-soft'}} {{ev.done ? 'ev-done' : ''}}"
+            wx:for="{{events[di]}}" wx:for-item="ev" wx:key="id"
+            data-id="{{ev.id}}" data-s="{{ev.dateStr}}" bindtap="openDetail" bindlongpress="openDetail"
+            style="top:{{ev.top}}rpx;height:{{ev.height}}rpx;border-left-color:{{ev.color}};{{selected === ev.dateStr ? 'background:' + ev.color + ';' : 'background:' + ev.light + ';'}}">
+            <view class="ev-title">{{ev.title}}</view>
+            <view class="ev-place" wx:if="{{ev.place}}">{{ev.place}}</view>
+          </view>
+        </view>
+        <view class="now-line" wx:if="{{showNow}}" style="top:{{currentTop}}rpx;"></view>
+      </view>
+    </view>
+  </scroll-view>
+
+  <view class="detail" wx:if="{{detail}}">
+    <view class="mask" catchtap="closeDetail"></view>
+    <view class="d-card">
+      <view class="d-bar" style="background:{{detail.color}};"></view>
+      <view class="d-title">{{detail.title}}</view>
+      <view class="d-line">🕐 {{detail.timeText}}<text wx:if="{{detail.repeatIcon}}"> ↻</text></view>
+      <view class="d-line" wx:if="{{detail.place}}">📍 {{detail.place}}</view>
+      <view class="d-status" wx:if="{{detail.statusText}}">{{detail.statusText}}</view>
+      <view class="row d-actions">
+        <button class="btn btn-ghost fill" hover-class="btn-hover" bindtap="editDetail">修正</button>
+        <view style="width: 18rpx;"></view>
+        <button class="btn fill danger-btn" hover-class="btn-hover" bindtap="deleteDetail">删除</button>
+      </view>
+      <view class="d-cancel" bindtap="closeDetail">取消</view>
+    </view>
+  </view>
+</view>
