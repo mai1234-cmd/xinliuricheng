@@ -1,6 +1,6 @@
 {
   "compileType": "miniprogram",
-  "appid": "wxa220bf792ba1fbce",
+  "appid": "wx9ac635e01b0c97c4",
   "projectname": "mindflow",
   "setting": {
     "es6": true,
@@ -12,7 +12,27 @@
     "uglifyFileName": true,
     "uploadWithSourceMap": false,
     "minifyWXSS": true,
-    "minifyWXML": true
+    "minifyWXML": true,
+    "compileWorklet": false,
+    "packNpmManually": false,
+    "packNpmRelationList": [],
+    "localPlugins": false,
+    "disableUseStrict": false,
+    "useCompilerPlugins": false,
+    "condition": false,
+    "swc": false,
+    "disableSWC": true,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    }
   },
-  "condition": {}
+  "condition": {},
+  "simulatorPluginLibVersion": {},
+  "packOptions": {
+    "ignore": [],
+    "include": []
+  },
+  "editorSetting": {}
 }
